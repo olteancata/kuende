@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainForm.qml</file>
+        <file>AppAnimation.qml</file>
+        <file>AppAnimationBtn.qml</file>
+        <file>AppButton.qml</file>
+        <file>AppList.qml</file>
+        <file>AppMove.qml</file>
+        <file>AppMoveItem.qml</file>
+        <file>AppRedditListView.qml</file>
+        <file>ProjectResources/animation.png</file>
+        <file>ProjectResources/cppList.png</file>
+        <file>ProjectResources/fontawesome-webfont.ttf</file>
+        <file>ProjectResources/list.png</file>
+        <file>ProjectResources/move.png</file>
+        <file>ProjectResources/placeholder.png</file>
+        <file>ProjectResources/redit.json</file>
+        <file>AppCppList.qml</file>
+        <file>AppCppListElement.qml</file>
+    </qresource>
+</RCC>
