@@ -10,7 +10,7 @@ class MyModel : public QObject
     Q_OBJECT
     Q_PROPERTY(QStringList data READ data WRITE setData NOTIFY dataChanged)
 public:
-    void appendNewRandomQString();
+    Q_INVOKABLE void appendNewRandomQString();
     MyModel();
     void setData(const QStringList &a) {
         if (a != m_data) {

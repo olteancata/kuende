@@ -14,15 +14,14 @@ Rectangle {
         }
         return color;
     }
-
-
-
+    Background{}
     Rectangle {
         id: myForm
-        width: 48
-        height: 48
+        property int initSize: parent.width * 0.12
+        width: initSize
+        height: initSize
         color: "#dddd00"
-        border.width: 2
+        border.width: width * 0.02
         border.color: "#dd7700"
         x: (animationArea.width - myForm.width) / 2
         y: (animationArea.height - myForm.height) / 2
@@ -59,17 +58,15 @@ Rectangle {
     //Move
     AppAnimationBtn {
         id:moveBtn
-        text: "Move"
+        text: "Move \uf0b2"
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: parent.width * 0.005
 
         MouseArea {
             anchors.fill: parent
             onClicked: {
-
                 myForm.x = Math.floor(Math.random() * (animationArea.width - myForm.width))
                 myForm.y = Math.floor(Math.random() * (animationArea.height - myForm.height))
-                console.log("Move to x:" + moveAnimationX.to + " y:" + moveAnimationY.to + " !")
             }
         }
     }
@@ -77,9 +74,9 @@ Rectangle {
     //Color
     AppAnimationBtn {
         id: colorBtn
-        text: "Color"
+        text: "Color \uf1fc"
         anchors.left: moveBtn.right
-        anchors.leftMargin: 15
+        anchors.leftMargin: parent.height * 0.005
 
         MouseArea {
             anchors.fill: parent
@@ -94,14 +91,14 @@ Rectangle {
     //Size
     AppAnimationBtn {
         id: sizeBtn
-        text: "Size"
+        text: "Size \uf047"
         anchors.left: colorBtn.right
-        anchors.leftMargin: 15
+        anchors.leftMargin: parent.height * 0.005
 
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                if (Math.floor(Math.random() * 100) > 35){
+                if (Math.floor(Math.random() * 100) > 40){
                     myForm.width += Math.floor(Math.random() * 20) + 1
                     myForm.height += Math.floor(Math.random() * 20) + 1
                     myForm.border.width += Math.floor(Math.random() * Math.floor(myForm.width / 5))
@@ -118,48 +115,22 @@ Rectangle {
     //Reset
     AppAnimationBtn {
         id: resetBtn
-        text: "Reset"
+        text: "Reset \uf021"
         anchors.right: parent.right
-        anchors.rightMargin: 15
+        anchors.rightMargin: parent.height * 0.005
 
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                myForm.x = (animationArea.width - 48) / 2
-                myForm.y = (animationArea.height - 48) / 2
-                myForm.width = 48
-                myForm.height = 48
-                myForm.border.width = 2
+                myForm.x = (animationArea.width - myForm.initSize) / 2
+                myForm.y = (animationArea.height - myForm.initSize) / 2
+                myForm.width = myForm.initSize
+                myForm.height = myForm.initSize
+                myForm.border.width = parent.width * 0.05
                 myForm.color = "#dddd00"
                 myForm.border.color = "#dd7700"
             }
         }
     }
-
-//    //Color
-//    AppAnimationBtn {
-//        id: infiniteBtn
-//        text: "Infinite"
-//        anchors.right: parent.right
-//        anchors.top: parent.top
-//        anchors.rightMargin: 15
-//        anchors.topMargin: 8
-//        anchors.bottom: undefined
-//        textStrikeout: true
-//        property bool loop: false
-
-//        MouseArea {
-//            anchors.fill: parent
-//            onClicked: {
-//                if (infiniteBtn.textStrikeout == true){
-//                    infiniteBtn.textStrikeout = false
-
-//                }
-//                else{
-//                    infiniteBtn.textStrikeout = true
-//                }
-//            }
-//        }
-//    }
 
 }

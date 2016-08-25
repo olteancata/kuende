@@ -1,18 +1,18 @@
-import QtQuick 2.5
+import QtQuick 2.7
 import QtGraphicalEffects 1.0
 
 Rectangle {
     width: parent.width
+    Background{}
     ListView {
         id: view
         anchors.fill: parent
         spacing: 5
-
         delegate: Rectangle {
+            id:listElement
             width: view.width
-            height: parent.width * 0.20
-            anchors.margins: 2
-            color: "#DC3E5D"
+            height: view.height * 0.17
+            opacity:0.65
 
             Image {
                 id: thumbnail
@@ -23,6 +23,13 @@ Rectangle {
                 width: parent.height * 0.75
                 height: parent.height * 0.75
                 source: model.modelData.data.thumbnail
+                opacity: 1.0
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        Qt.openUrlExternally(model.modelData.data.url);
+                    }
+                }
             }
 
             Text {
@@ -32,7 +39,7 @@ Rectangle {
                 anchors.horizontalCenter: thumbnail.horizontalCenter
                 text: model.modelData.data.ups
                 font.pixelSize: parent.height * 0.12
-
+                opacity: 1.0
             }
 
             Text {
@@ -42,6 +49,7 @@ Rectangle {
                 text: "by " + model.modelData.data.author + " on " + model.modelData.data.subreddit
                 font.pixelSize: parent.height * 0.12
                 font.family: "Ubuntu"
+                opacity: 1.0
             }
 
             Text {
@@ -58,8 +66,8 @@ Rectangle {
                 font.pixelSize: parent.height * 0.14
                 width: parent.width - parent.border.width - thumbnail.width - 20
                 font.family: "Ubuntu"
+                opacity: 1.0
             }
-
         }
     }
 
@@ -72,7 +80,6 @@ Rectangle {
                 print('DONE')
                 var json = JSON.parse(xhr.responseText.toString())
                 view.model = json.data.children
-
             }
             print(json)
         }

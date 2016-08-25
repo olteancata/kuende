@@ -25,8 +25,9 @@ Rectangle {
         id: buttonText
         text: parent.buttonText
         font.family: "Ubuntu"
-        font.pixelSize: parent.height * 0.14
+        font.pixelSize: parent.height * 0.18
         anchors.top: buttonImg.bottom
+        anchors.topMargin: parent.height * 0.1
         anchors.horizontalCenter: parent.horizontalCenter
         color: parent.buttonTextAndImgColor
 

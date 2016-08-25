@@ -24,4 +24,5 @@ MyModel::MyModel()
 void MyModel::appendNewRandomQString()
 {
     this->m_data << GetRandomString();
+    emit dataChanged();
 }

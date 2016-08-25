@@ -3,52 +3,70 @@ import QtQuick 2.0;
 Rectangle {
     id: moveArea;
     width: parent.width
-
     property bool globalBit : true;
-
+    Background{}
     AppMoveItem {
-        property int size: 2
+        property int initSize : Math.floor(parent.width / 8)
+        property int size: parent.width * 0.01
         id: myForm;
-        x : (moveArea.width - 70) / 2
-        y : (moveArea.height - 70) / 2
-        width: 96 + myForm.size;
-        height: 96 + myForm.size;
+        x : (moveArea.width - initSize) / 2
+        y : (moveArea.height - initSize) / 2
+        width: initSize + myForm.size;
+        height: initSize + myForm.size;
 
         AppMoveItem {
-            id:form6
-            width: 80 + myForm.size
-            height: 80 + myForm.size
+            id:form1
+            width: myForm.initSize - myForm.initSize * 0.1 + myForm.size
+            height: myForm.initSize  - myForm.initSize * 0.1 + myForm.size
             anchors.centerIn: parent
 
             AppMoveItem {
-                id:form5
-                width: 64 + myForm.size
-                height: 64 + myForm.size
+                id:form2
+                width: myForm.initSize - myForm.initSize * 0.2 + myForm.size
+                height: myForm.initSize  - myForm.initSize * 0.2 + myForm.size
                 anchors.centerIn: parent
 
                 AppMoveItem {
-                    id:form4
-                    width: 48 + myForm.size
-                    height: 48 + myForm.size
+                    id:form3
+                    width: myForm.initSize - myForm.initSize * 0.3 + myForm.size
+                    height: myForm.initSize  - myForm.initSize * 0.3 + myForm.size
                     anchors.centerIn: parent
 
                     AppMoveItem {
-                        id:form3
-                        width: 32 + myForm.size
-                        height: 32 + myForm.size
+                        id:form4
+                        width: myForm.initSize - myForm.initSize * 0.4 + myForm.size
+                        height: myForm.initSize  - myForm.initSize * 0.4 + myForm.size
                         anchors.centerIn: parent
 
                         AppMoveItem {
-                            id:form2
-                            width: 16 + myForm.size
-                            height: 16 + myForm.size
+                            id:form5
+                            width: myForm.initSize - myForm.initSize * 0.5 + myForm.size
+                            height: myForm.initSize  - myForm.initSize * 0.5 + myForm.size
                             anchors.centerIn: parent
 
                             AppMoveItem {
-                                id:form1
-                                width: myForm.size
-                                height: myForm.size
+                                id:form6
+                                width: myForm.initSize - myForm.initSize * 0.6 + myForm.size
+                                height: myForm.initSize  - myForm.initSize * 0.6 + myForm.size
                                 anchors.centerIn: parent
+                                AppMoveItem {
+                                    id:form7
+                                    width: myForm.initSize - myForm.initSize * 0.7 + myForm.size
+                                    height: myForm.initSize  - myForm.initSize * 0.7 + myForm.size
+                                    anchors.centerIn: parent
+                                    AppMoveItem {
+                                        id:form8
+                                        width: myForm.initSize - myForm.initSize * 0.8 + myForm.size
+                                        height: myForm.initSize  - myForm.initSize * 0.8 + myForm.size
+                                        anchors.centerIn: parent
+                                        AppMoveItem {
+                                            id:form9
+                                            width: myForm.initSize - myForm.initSize * 0.9 + myForm.size
+                                            height: myForm.initSize  - myForm.initSize * 0.9 + myForm.size
+                                            anchors.centerIn: parent
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -76,6 +94,9 @@ Rectangle {
                 form4.color = myForm.getRandomColor()
                 form5.color = myForm.getRandomColor()
                 form6.color = myForm.getRandomColor()
+                form7.color = myForm.getRandomColor()
+                form8.color = myForm.getRandomColor()
+                form9.color = myForm.getRandomColor()
 
                 console.log("Change color of 'myForm' !")
             }
@@ -96,7 +117,7 @@ Rectangle {
         running: false
         triggeredOnStart: true
         onTriggered:  {
-            myForm.size += 4
+            myForm.size += moveArea.width * 0.01
             sizePlusBtnColorAnimation.start()
         }
     }
@@ -108,7 +129,7 @@ Rectangle {
         running: false
         triggeredOnStart: true
         onTriggered:  {
-            myForm.size -= 4
+            myForm.size -= moveArea.width * 0.01
             sizeMinusBtnColorAnimation.start()
         }
     }
@@ -116,9 +137,10 @@ Rectangle {
     //Reset
     AppAnimationBtn {
         id: resetBtn
-        text: "Reset"
+        text: "\uf021"
         anchors.right: parent.right
         anchors.rightMargin: 15
+        fontFamily: awesomeFont.name
 
         MouseArea {
             anchors.fill: parent
@@ -133,9 +155,10 @@ Rectangle {
     //Size -
     AppAnimationBtn {
         id: sizeMinusBtn
-        text: "Size -"
+        text: "\uf068"
         anchors.right: resetBtn.left
         anchors.rightMargin: 15
+        fontFamily: awesomeFont.name
 
         ColorAnimation {
             id:sizeMinusBtnColorAnimation
@@ -160,9 +183,10 @@ Rectangle {
     //Size +
     AppAnimationBtn {
         id: sizePlusBtn
-        text: "Size +"
+        text: "\uf067"
         anchors.right: sizeMinusBtn.left
         anchors.rightMargin: 15
+        fontFamily: awesomeFont.name
 
         ColorAnimation {
             id:sizePlusBtnColorAnimation

@@ -3,6 +3,7 @@ import QtGraphicalEffects 1.0
 
 Rectangle {
     width: parent.width
+    Background{}
     ListView {
         anchors.fill: parent
         spacing : 5
@@ -11,15 +12,8 @@ Rectangle {
             id:element
             width: parent.width
             height: listCppText.height
-            LinearGradient {
-                anchors.fill: parent
-                start: Qt.point(0, 0)
-                end: Qt.point(0, parent.height)
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "white" }
-                    GradientStop { position: 1.0; color: "#ff6066" }
-                }
-            }
+            opacity: 0.6
+
             Text {
                 id: listCppText
                 anchors.left: parent.left
@@ -29,7 +23,26 @@ Rectangle {
                 elide: Text.ElideRight
                 width: parent.width - parent.border.width
                 font.family: "Ubuntu"
+                font.pixelSize: 12
             }
         }
     }
+    Timer {
+        id:addString
+        interval: 6000
+        repeat: true
+        running: false
+        triggeredOnStart: true
+        onTriggered:  {
+            str.appendNewRandomQString();
+            console.log("New random string!");
+        }
+    }
+
+    Component.onCompleted: {
+        addString.start();
+    }
+
 }
+
+

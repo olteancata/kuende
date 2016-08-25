@@ -12,6 +12,11 @@ Rectangle{
     property color unfocusedButtonColor: "#BE2C47"
     property color focusedButtonColor: "#ad2942"
 
+    FontLoader {
+        id: awesomeFont
+        source: "qrc:/ProjectResources/fontawesome-webfont.ttf"
+    }
+
     SwipeView {
         id: view
         currentIndex: 0
@@ -39,7 +44,6 @@ Rectangle{
             id: list
 
             AppList{
-                color: myApp.backColor
                 height: myApp.menuSize
             }
         }
@@ -47,7 +51,6 @@ Rectangle{
         Item {
             id: cppList
             AppCppList{
-                color: myApp.backColor
                 height: myApp.menuSize
             }
         }
@@ -56,7 +59,6 @@ Rectangle{
             id: move
 
             AppMove {
-                color: myApp.backColor
                 height: myApp.menuSize
             }
         }
@@ -65,7 +67,6 @@ Rectangle{
             id:animation
 
             AppAnimation{
-                color: myApp.backColor
                 height: myApp.menuSize
             }
         }
@@ -94,10 +95,6 @@ Rectangle{
         anchors.bottom: parent.bottom
         color: "#B7485D"
 
-        FontLoader {
-            id: awesomeFont
-            source: "qrc:/ProjectResources/fontawesome-webfont.ttf"
-        }
         //List
         AppButton {
             id:listBtn
@@ -169,7 +166,7 @@ Rectangle{
             anchors.left: cppListBtn.right
             width: (parent.width / 4) - ((parent.width / 4) * 0.01)
             anchors.leftMargin: width * 0.01
-            buttonImg: "\uf0b2"
+            buttonImg: "\uf1b2"
             buttonText: "Move"
             state: "unfocused"
             color: myApp.unfocusedButtonColor
@@ -203,7 +200,7 @@ Rectangle{
             anchors.left: moveBtn.right
             width: (parent.width / 4) - ((parent.width / 4) * 0.01)
             anchors.leftMargin: width * 0.01
-            buttonImg: "\uf04e"
+            buttonImg: "\uf152"
             buttonText: "Animation"
             state: "unfocused"
             color: myApp.unfocusedButtonColor
