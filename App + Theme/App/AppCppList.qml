@@ -2,17 +2,19 @@ import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
 Rectangle {
+    id: win
     width: parent.width
     Background{}
     ListView {
         anchors.fill: parent
-        spacing : 5
+        spacing : win.height * 0.01
         model: str.data
         delegate :Rectangle {
             id:element
-            width: parent.width
+            width: win.width
             height: listCppText.height
-            opacity: 0.6
+            opacity: 0.65
+            color: "black"
 
             Text {
                 id: listCppText
@@ -23,7 +25,8 @@ Rectangle {
                 elide: Text.ElideRight
                 width: parent.width - parent.border.width
                 font.family: "Ubuntu"
-                font.pixelSize: 12
+                font.pixelSize: win.height * 0.02
+                color: "white"
             }
         }
     }
@@ -35,7 +38,6 @@ Rectangle {
         triggeredOnStart: true
         onTriggered:  {
             str.appendNewRandomQString();
-            console.log("New random string!");
         }
     }
 

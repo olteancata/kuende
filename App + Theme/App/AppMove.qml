@@ -1,4 +1,5 @@
 import QtQuick 2.0;
+import QtGraphicalEffects 1.0
 
 Rectangle {
     id: moveArea;
@@ -6,99 +7,86 @@ Rectangle {
     property bool globalBit : true;
     Background{}
     AppMoveItem {
-        property int initSize : Math.floor(parent.width / 8)
+        property int initSize : Math.floor(parent.width / 6)
         property int size: parent.width * 0.01
         id: myForm;
         x : (moveArea.width - initSize) / 2
         y : (moveArea.height - initSize) / 2
         width: initSize + myForm.size;
         height: initSize + myForm.size;
-
-        AppMoveItem {
-            id:form1
-            width: myForm.initSize - myForm.initSize * 0.1 + myForm.size
-            height: myForm.initSize  - myForm.initSize * 0.1 + myForm.size
-            anchors.centerIn: parent
-
-            AppMoveItem {
-                id:form2
-                width: myForm.initSize - myForm.initSize * 0.2 + myForm.size
-                height: myForm.initSize  - myForm.initSize * 0.2 + myForm.size
-                anchors.centerIn: parent
-
-                AppMoveItem {
-                    id:form3
-                    width: myForm.initSize - myForm.initSize * 0.3 + myForm.size
-                    height: myForm.initSize  - myForm.initSize * 0.3 + myForm.size
-                    anchors.centerIn: parent
-
-                    AppMoveItem {
-                        id:form4
-                        width: myForm.initSize - myForm.initSize * 0.4 + myForm.size
-                        height: myForm.initSize  - myForm.initSize * 0.4 + myForm.size
-                        anchors.centerIn: parent
-
-                        AppMoveItem {
-                            id:form5
-                            width: myForm.initSize - myForm.initSize * 0.5 + myForm.size
-                            height: myForm.initSize  - myForm.initSize * 0.5 + myForm.size
-                            anchors.centerIn: parent
-
-                            AppMoveItem {
-                                id:form6
-                                width: myForm.initSize - myForm.initSize * 0.6 + myForm.size
-                                height: myForm.initSize  - myForm.initSize * 0.6 + myForm.size
-                                anchors.centerIn: parent
-                                AppMoveItem {
-                                    id:form7
-                                    width: myForm.initSize - myForm.initSize * 0.7 + myForm.size
-                                    height: myForm.initSize  - myForm.initSize * 0.7 + myForm.size
-                                    anchors.centerIn: parent
-                                    AppMoveItem {
-                                        id:form8
-                                        width: myForm.initSize - myForm.initSize * 0.8 + myForm.size
-                                        height: myForm.initSize  - myForm.initSize * 0.8 + myForm.size
-                                        anchors.centerIn: parent
-                                        AppMoveItem {
-                                            id:form9
-                                            width: myForm.initSize - myForm.initSize * 0.9 + myForm.size
-                                            height: myForm.initSize  - myForm.initSize * 0.9 + myForm.size
-                                            anchors.centerIn: parent
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+        color: "transparent"
+        RadialGradient {
+            anchors.fill: parent
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.000
+                    color: "#ff4444"
+                }
+                GradientStop {
+                    position: 0.05
+                    color: "#cc5577"
+                }
+                GradientStop {
+                    position: 0.1
+                    color: "#7755cc"
+                }
+                GradientStop {
+                    position: 0.15
+                    color: "#4455ff"
+                }
+                GradientStop {
+                    position: 0.2
+                    color: "#44cc44"
+                }
+                GradientStop {
+                    position: 0.25
+                    color: "#44ff44"
+                }
+                GradientStop {
+                    position: 0.3
+                    color: "#77cc77"
+                }
+                GradientStop {
+                    position: 0.35
+                    color: "#cc77cc"
+                }
+                GradientStop {
+                    position: 0.4
+                    color: "#ff44ff"
+                }
+                GradientStop {
+                    position: 0.45
+                    color: "#4444ff"
+                }
+                GradientStop {
+                    position: 0.499
+                    color: "transparent"
+                }
+                GradientStop {
+                    position: 0.50
+                    color: "transparent"
+                }
+                GradientStop {
+                    position: 1.000
+                    color: "transparent"
                 }
             }
         }
 
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++ ) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
+
+//        function getRandomColor() {
+//            var letters = '0123456789ABCDEF';
+//            var color = '#';
+//            for (var i = 0; i < 6; i++ ) {
+//                color += letters[Math.floor(Math.random() * 16)];
+//            }
+//            return color;
+//        }
 
         MouseArea {
             anchors.fill: parent
             onDoubleClicked: {
 
-                myForm.color = myForm.getRandomColor()
-                form1.color = myForm.getRandomColor()
-                form2.color = myForm.getRandomColor()
-                form3.color = myForm.getRandomColor()
-                form4.color = myForm.getRandomColor()
-                form5.color = myForm.getRandomColor()
-                form6.color = myForm.getRandomColor()
-                form7.color = myForm.getRandomColor()
-                form8.color = myForm.getRandomColor()
-                form9.color = myForm.getRandomColor()
-
-                console.log("Change color of 'myForm' !")
             }
             drag {
                 target: myForm;

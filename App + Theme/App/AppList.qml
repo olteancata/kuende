@@ -2,17 +2,20 @@ import QtQuick 2.7
 import QtGraphicalEffects 1.0
 
 Rectangle {
+    id:win
     width: parent.width
+    property color fontColor: "white"
     Background{}
     ListView {
         id: view
         anchors.fill: parent
-        spacing: 5
+        spacing: win.height * 0.01
         delegate: Rectangle {
             id:listElement
             width: view.width
             height: view.height * 0.17
             opacity:0.65
+            color: "black"
 
             Image {
                 id: thumbnail
@@ -40,6 +43,7 @@ Rectangle {
                 text: model.modelData.data.ups
                 font.pixelSize: parent.height * 0.12
                 opacity: 1.0
+                color: win.fontColor
             }
 
             Text {
@@ -50,23 +54,26 @@ Rectangle {
                 font.pixelSize: parent.height * 0.12
                 font.family: "Ubuntu"
                 opacity: 1.0
+                color: win.fontColor
             }
 
             Text {
                 id: title
                 wrapMode: Text.Wrap
-                maximumLineCount: 2
+                maximumLineCount: 3
                 elide: Text.ElideRight
                 clip: true
                 text: model.modelData.data.title
                 anchors.top: parent.top
                 anchors.left: thumbnail.right
-                anchors.topMargin: parent.height * 0.07
+                anchors.topMargin: parent.height * 0.15
                 anchors.leftMargin: parent.height * 0.12
                 font.pixelSize: parent.height * 0.14
+                font.bold: true
                 width: parent.width - parent.border.width - thumbnail.width - 20
                 font.family: "Ubuntu"
                 opacity: 1.0
+                color: win.fontColor
             }
         }
     }
@@ -79,7 +86,18 @@ Rectangle {
             } else if(xhr.readyState === XMLHttpRequest.DONE) {
                 print('DONE')
                 var json = JSON.parse(xhr.responseText.toString())
+                var index = 0;
+                for(var k in json.data.children) {
+                    if(json.data.children[index].data.thumbnail == "nsfw")
+                        json.data.children[index].data.thumbnail = "qrc:/ProjectResources/placeholder_purchase_icon@2x-fe3b08515247cd8b389dac40d2a4251cae186bc7c090dbd918bf8a7be54bdb3e.png";
+                    else if(json.data.children[index].data.thumbnail === "")
+                        json.data.children[index].data.thumbnail = "qrc:/ProjectResources/placeholder_purchase_icon@2x-fe3b08515247cd8b389dac40d2a4251cae186bc7c090dbd918bf8a7be54bdb3e.png";
+                    else if(json.data.children[index].data.thumbnail === "self")
+                        json.data.children[index].data.thumbnail = "qrc:/ProjectResources/placeholder_purchase_icon@2x-fe3b08515247cd8b389dac40d2a4251cae186bc7c090dbd918bf8a7be54bdb3e.png";
+                    index++;
+                }
                 view.model = json.data.children
+
             }
             print(json)
         }
